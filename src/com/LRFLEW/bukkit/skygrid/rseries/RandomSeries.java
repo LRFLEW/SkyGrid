@@ -3,18 +3,21 @@ package com.LRFLEW.bukkit.skygrid.rseries;
 import java.util.Random;
 
 public class RandomSeries {
+	private int[] reset;
 	private int[] series;
 	private int pos;
 	
 	public RandomSeries(int size) {
-		series = new int[size];
+		reset = new int[size];
 		for (int i = 0; i < size; i++) {
-			series[i] = i;
+			reset[i] = i;
 		}
+		reset();
 	}
 	
 	public void reset() {
 		pos = 0;
+		series = reset.clone();
 	}
 	
 	public int next(Random random) {

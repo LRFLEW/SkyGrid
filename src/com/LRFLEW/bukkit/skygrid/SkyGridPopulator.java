@@ -28,7 +28,6 @@ public class SkyGridPopulator extends BlockPopulator {
 		if (rnd == null || rnd.hight != world.getMaxHeight()) {
 			rnd = new RandomBlockSeries(world);
 		}
-		rnd.reset();
 		for(int i = 0; random.nextDouble() < WorldStyles.getSProb(world, i); i++) {
 			if (WorldStyles.isChest(world, random)) {
 				newChest(chunk, random);
@@ -36,6 +35,7 @@ public class SkyGridPopulator extends BlockPopulator {
 				newSpawner(chunk, random);
 			}
 		}
+		rnd.reset();
 		if (chunk.getX() == 0 && chunk.getZ() == 0) {
 			chunk.getBlock(0, 200, 0).setTypeId(1); //Set Spawn to Stone
 			chunk.getBlock(0, 201, 0).setTypeId(0);
@@ -103,10 +103,10 @@ public class SkyGridPopulator extends BlockPopulator {
 		
 		set.add(damageInRange(6, 0, 3, random)); //sapling
 		
-		slt.reset();
 		for (ItemStack i : set) {
 			inv.setItem(slt.next(random), i);
 		}
+		slt.reset();
 	}
 	
 	private ItemStack itemInRange(int min, int max, Random random) {

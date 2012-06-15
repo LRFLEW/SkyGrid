@@ -7,8 +7,9 @@ import org.bukkit.World;
 import org.bukkit.block.Block;
 
 public class RandomBlockSeries {
+	private GridBlockAbstract[] reset;
 	private GridBlockAbstract[] series;
-	private int pos = 0;
+	private int pos;
 	public final int hight;
 	
 	public RandomBlockSeries (World world) {
@@ -19,16 +20,18 @@ public class RandomBlockSeries {
 		for (int x = 0; x < 4; x++) {
 			for (int y = 0; y < world.getMaxHeight() / 4; y++) {
 				for (int z = 0; z < 4; z++) {
-					series[i] = new GridBlockAbstract(x, y, z);
+					reset[i] = new GridBlockAbstract(x, y, z);
 					i++;
 				}
 			}
 		}
 		
+		reset();
 	}
 	
 	public void reset() {
 		pos = 0;
+		series = reset.clone();
 	}
 	
 	public Block nextBlock(Chunk chunk, Random random) {
