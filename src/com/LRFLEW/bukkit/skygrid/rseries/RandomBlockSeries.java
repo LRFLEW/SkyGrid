@@ -13,7 +13,7 @@ public class RandomBlockSeries {
 	public final int hight;
 	
 	public RandomBlockSeries (World world) {
-		series = new GridBlockAbstract[4 * world.getMaxHeight()];
+		reset = new GridBlockAbstract[4 * world.getMaxHeight()];
 		hight = world.getMaxHeight();
 		
 		int i = 0;

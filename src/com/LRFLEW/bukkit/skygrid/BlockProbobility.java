@@ -19,12 +19,10 @@ public class BlockProbobility {
 	
 	public byte getBlock(Random random, boolean bottom, boolean b) {
 		byte temp = p.floorEntry(random.nextInt(total)).getValue();
-		if (bottom) {
-			if (temp == 81) { //cactus
-				return getBlock(random, bottom, b);
-			} else if (b && (temp == 9 || temp == 11)) {
-				return getBlock(random, bottom, b);
-			}
+		if (bottom && temp == 81) {
+			return getBlock(random, bottom, b);
+		} else if (b && (temp == 9 || temp == 11)) {
+			return getBlock(random, bottom, b);
 		}
 		return temp;
 	}

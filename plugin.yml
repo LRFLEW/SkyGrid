@@ -1,5 +1,5 @@
 name: SkyGrid
-version: 1.0
+version: 1.1
 main: com.LRFLEW.bukkit.skygrid.SkyGridPlugin
 load: STARTUP
 author: LRFLEW
