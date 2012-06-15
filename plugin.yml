@@ -1,0 +1,7 @@
+name: SkyGrid
+version: 1.0
+main: com.LRFLEW.bukkit.skygrid.SkyGridPlugin
+load: STARTUP
+author: LRFLEW
+authors: [sethbling]
+description: Allows the server to generate worlds with sethbling's SkyGrid code
