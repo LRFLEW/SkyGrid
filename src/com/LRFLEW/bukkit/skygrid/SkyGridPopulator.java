@@ -103,6 +103,10 @@ public class SkyGridPopulator extends BlockPopulator {
 		
 		set.add(damageInRange(6, 0, 3, random)); //sapling
 		
+		//for dyes
+		if (random.nextDouble() < 0.3)
+			set.add(damageInRange(351, 0, 15, random));
+		
 		for (ItemStack i : set) {
 			inv.setItem(slt.next(random), i);
 		}
