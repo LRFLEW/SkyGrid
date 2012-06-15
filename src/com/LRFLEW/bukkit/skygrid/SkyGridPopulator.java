@@ -87,10 +87,10 @@ public class SkyGridPopulator extends BlockPopulator {
 			set.add(damageInRange(383, 50, 52, random)); //spawn eggs
 		
 		if (random.nextDouble() < 0.9)
-			set.add(damageInRange(383, 50, 52, random)); //spawn eggs
+			set.add(damageInRange(383, 54, 62, random)); //spawn eggs
 		
 		if (random.nextDouble() < 0.4)
-			set.add(damageInRange(383, 50, 52, random)); //spawn eggs
+			set.add(damageInRange(383, 92, 96, random)); //spawn eggs
 		
 		if (random.nextDouble() < 0.1)
 			set.add(new ItemStack(383, 1, (short) 98)); //ocelot spawn egg
