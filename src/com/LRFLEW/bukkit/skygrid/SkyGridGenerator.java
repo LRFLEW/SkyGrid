@@ -27,7 +27,8 @@ public class SkyGridGenerator extends ChunkGenerator {
 				for (int y = 0; y < 16; y += 4) {
 					for (int z = 0; z < 16; z += 4) {
 						if (y == 0) {
-							t = getBlock(chunk[ys - 1], x, 13, z);
+							if (ys != 0) t = getBlock(chunk[ys - 1], x, 13, z);
+							else t = 0;
 						} else {
 							t = getBlock(chunk[ys], x, y - 3, z);
 						}
