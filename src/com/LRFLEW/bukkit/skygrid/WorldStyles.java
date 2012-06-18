@@ -123,9 +123,9 @@ public class WorldStyles {
 		return s;
 	}
 	
-	public static double getSProb(World world, int it) {
+	public static double getSProb(World world, int size, int it) {
 		int x = get(world.getEnvironment()).p.total;
-		int y = 4 * world.getMaxHeight();
+		int y = 4 * SkyGridPlugin.maxHeight(world, size);
 		int n = (world.getEnvironment() == Environment.NETHER ? 3 : 2);
 		x += n;
 		return 1 - Math.pow((double) (x-n) / x, y - it);

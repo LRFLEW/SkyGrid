@@ -6,19 +6,24 @@ import org.bukkit.Chunk;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 
+import com.LRFLEW.bukkit.skygrid.SkyGridPlugin;
+
 public class RandomBlockSeries {
 	private GridBlockAbstract[] reset;
 	private GridBlockAbstract[] series;
 	private int pos;
-	public final int hight;
+	public final int height;
 	
-	public RandomBlockSeries (World world) {
-		reset = new GridBlockAbstract[4 * world.getMaxHeight()];
-		hight = world.getMaxHeight();
+	public RandomBlockSeries (World world, int size) {
+		int t = SkyGridPlugin.maxHeight(world, size);
+		t -= t % 16;
+		height = t;
+		
+		reset = new GridBlockAbstract[4 * height];
 		
 		int i = 0;
 		for (int x = 0; x < 4; x++) {
-			for (int y = 0; y < world.getMaxHeight() / 4; y++) {
+			for (int y = 0; y < height / 4; y++) {
 				for (int z = 0; z < 4; z++) {
 					reset[i] = new GridBlockAbstract(x, y, z);
 					i++;

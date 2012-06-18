@@ -22,13 +22,18 @@ import com.LRFLEW.bukkit.skygrid.rseries.RandomSeries;
 public class SkyGridPopulator extends BlockPopulator {
 	private RandomBlockSeries rnd = null;
 	private static RandomSeries slt = new RandomSeries(27);
+	private final int size;
+	
+	public SkyGridPopulator(int size) {
+		this.size = size;
+	}
 
 	@Override
 	public void populate(World world, Random random, Chunk chunk) {
-		if (rnd == null || rnd.hight != world.getMaxHeight()) {
-			rnd = new RandomBlockSeries(world);
+		if (rnd == null) {
+			rnd = new RandomBlockSeries(world, size);
 		}
-		for(int i = 0; random.nextDouble() < WorldStyles.getSProb(world, i); i++) {
+		for(int i = 0; random.nextDouble() < WorldStyles.getSProb(world, size, i); i++) {
 			if (WorldStyles.isChest(world, random)) {
 				newChest(chunk, random);
 			} else {
@@ -37,10 +42,12 @@ public class SkyGridPopulator extends BlockPopulator {
 		}
 		rnd.reset();
 		if (chunk.getX() == 0 && chunk.getZ() == 0) {
-			chunk.getBlock(0, 200, 0).setTypeId(1); //Set Spawn to Stone
-			chunk.getBlock(0, 201, 0).setTypeId(0);
-			chunk.getBlock(1, 200, 0).setTypeId(0);
-			chunk.getBlock(0, 199, 0).setTypeId(0);
+			int sy = (int) (SkyGridPlugin.maxHeight(world, size) * 0.75) - 4;
+			
+			chunk.getBlock(0, sy, 0).setTypeId(1); //Set Spawn to Stone
+			chunk.getBlock(0, sy + 1, 0).setTypeId(0);
+			chunk.getBlock(1, sy, 0).setTypeId(0);
+			chunk.getBlock(0, sy - 1, 0).setTypeId(0);
 			
 			setEndPortal(chunk);
 		}

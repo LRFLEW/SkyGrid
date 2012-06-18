@@ -10,6 +10,15 @@ import org.bukkit.generator.BlockPopulator;
 import org.bukkit.generator.ChunkGenerator;
 
 public class SkyGridGenerator extends ChunkGenerator {
+	private final int size;
+	
+	public SkyGridGenerator() {
+		this(256);
+	}
+	
+	public SkyGridGenerator(int size) {
+		this.size = size;
+	}
 	
 	@Override
 	public byte[][] generateBlockSections(World world, Random random, int chunkx, int chunkz, BiomeGrid biomes) {
@@ -17,7 +26,7 @@ public class SkyGridGenerator extends ChunkGenerator {
 		byte blockid;
 		BlockProbobility p = WorldStyles.get(world.getEnvironment()).p;
 		
-		int vsegs = world.getMaxHeight() / 16;
+		int vsegs = SkyGridPlugin.maxHeight(world, size) / 16;
 		byte[][] chunk = new byte[vsegs][];
 		boolean b;
 		byte t;
@@ -76,13 +85,13 @@ public class SkyGridGenerator extends ChunkGenerator {
 	@Override
 	public List<BlockPopulator> getDefaultPopulators(World world) {
 		List<BlockPopulator> list = new ArrayList<BlockPopulator>(1);
-		list.add(new SkyGridPopulator());
+		list.add(new SkyGridPopulator(size));
 		return list;
 	}
 	
 	@Override
 	public Location getFixedSpawnLocation(World world, Random random) {
-		return new Location(world, 0.5, 201, 0.5);
+		return new Location(world, 0.5, (SkyGridPlugin.maxHeight(world, size) * 0.75) - 4, 0.5);
 	}
 	
 }
